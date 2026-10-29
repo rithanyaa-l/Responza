@@ -1,0 +1,850 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Loading…</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="icon" href="data:," />
+  </head>
+  <body class="locked">
+    <div class="gate" id="gate">
+      <div class="gcard">
+        <img id="gLogo" class="logo" alt="" hidden />
+        <h2 id="gT">Connecting…</h2>
+        <p id="gM">Loading the latest attendance from the server.</p>
+        <div id="gB"></div>
+      </div>
+    </div>
+    <div class="site">
+      <div class="in">
+        <div class="brand">
+          <img class="logo" alt="" hidden />
+          <div><b id="brandName"></b><span id="brandTag"></span></div>
+        </div>
+        <nav class="tabs">
+          <a href="#dashboard" id="tabD">Dashboard</a><a href="#mark" id="tabM">Mark attendance</a>
+        </nav>
+        <div class="acc">
+          <button class="btn themeb" id="themeBtn" title="Toggle theme (T)" aria-label="Toggle theme"></button>
+          <span class="status" id="syncChip" role="status" aria-live="polite"></span>
+          <button class="btn admin-only" id="accBtn" type="button">👤 Manage access</button>
+          <div class="umenu" id="userBox" hidden>
+            <button class="ubtn" id="userBtn" type="button" aria-haspopup="menu" aria-expanded="false">
+              <span class="uav" id="userAv" aria-hidden="true"></span>
+              <span class="who"><b id="userName"></b><small class="urole" id="userRole"></small></span>
+              <span class="caret" aria-hidden="true">▾</span>
+            </button>
+            <div class="umenu-list" id="userMenu" role="menu" hidden>
+              <div class="umenu-head"><b id="userMenuName"></b><span id="userMenuEmail"></span></div>
+              <button type="button" role="menuitem" id="pwBtn">🔑 Change password</button>
+              <button type="button" role="menuitem" id="logoutBtn">↩ Sign out</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
+      <section class="hero">
+        <div class="hero-ico">📋</div>
+        <div>
+          <div class="hero-eyebrow">Daily standup attendance</div>
+          <div class="hero-t">Know who’s in, every day.</div>
+          <p class="hero-d" id="heroD"></p>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <svg viewBox="0 0 300 140" xmlns="http://www.w3.org/2000/svg" focusable="false">
+            <defs>
+              <linearGradient id="heroG" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" style="stop-color: var(--c1)" />
+                <stop offset="1" style="stop-color: var(--c2)" />
+              </linearGradient>
+            </defs>
+            <circle cx="150" cy="72" r="64" fill="var(--brand)" opacity=".08" />
+            <circle cx="270" cy="20" r="5" fill="var(--c3)" opacity=".75" />
+            <circle cx="10" cy="132" r="4" fill="var(--c5)" opacity=".65" />
+            <circle cx="290" cy="130" r="3" fill="var(--p)" opacity=".75" />
+            <rect x="8" y="12" width="186" height="116" rx="14" fill="var(--surface)" stroke="var(--line)" />
+            <rect x="8" y="12" width="186" height="28" rx="14" fill="url(#heroG)" />
+            <rect x="8" y="26" width="186" height="14" fill="url(#heroG)" />
+            <circle cx="24" cy="26" r="3" fill="#fff" opacity=".85" />
+            <circle cx="35" cy="26" r="3" fill="#fff" opacity=".55" />
+            <circle cx="46" cy="26" r="3" fill="#fff" opacity=".35" />
+            <rect x="120" y="23" width="60" height="6" rx="3" fill="#fff" opacity=".4" />
+            <path d="M18 65H184M18 86H184M18 107H184" fill="none" stroke="var(--line)" />
+            <circle cx="26" cy="54" r="7" fill="var(--c1)" />
+            <circle cx="26" cy="52" r="2.3" fill="#fff" opacity=".9" />
+            <path d="M21.5 58.5a4.5 4 0 0 1 9 0z" fill="#fff" opacity=".9" />
+            <rect x="40" y="49" width="54" height="5" rx="2.5" fill="var(--text)" opacity=".7" />
+            <rect x="40" y="58" width="34" height="4" rx="2" fill="var(--muted)" opacity=".45" />
+            <rect x="132" y="46" width="54" height="16" rx="8" fill="var(--p)" opacity=".2" />
+            <path
+              d="M141 54l3.5 3.5 6-7"
+              fill="none"
+              stroke="var(--p)"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <rect x="156" y="52" width="22" height="4" rx="2" fill="var(--p)" opacity=".7" />
+            <circle cx="26" cy="75" r="7" fill="var(--c2)" />
+            <circle cx="26" cy="73" r="2.3" fill="#fff" opacity=".9" />
+            <path d="M21.5 79.5a4.5 4 0 0 1 9 0z" fill="#fff" opacity=".9" />
+            <rect x="40" y="70" width="46" height="5" rx="2.5" fill="var(--text)" opacity=".7" />
+            <rect x="40" y="79" width="30" height="4" rx="2" fill="var(--muted)" opacity=".45" />
+            <rect x="132" y="67" width="54" height="16" rx="8" fill="var(--w)" opacity=".2" />
+            <path
+              d="M140.5 76.5l5-5 5 5M142 75.5v5h7v-5"
+              fill="none"
+              stroke="var(--w)"
+              stroke-width="1.8"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <rect x="156" y="73" width="22" height="4" rx="2" fill="var(--w)" opacity=".7" />
+            <circle cx="26" cy="96" r="7" fill="var(--c3)" />
+            <circle cx="26" cy="94" r="2.3" fill="#fff" opacity=".9" />
+            <path d="M21.5 100.5a4.5 4 0 0 1 9 0z" fill="#fff" opacity=".9" />
+            <rect x="40" y="91" width="58" height="5" rx="2.5" fill="var(--text)" opacity=".7" />
+            <rect x="40" y="100" width="28" height="4" rx="2" fill="var(--muted)" opacity=".45" />
+            <rect x="132" y="88" width="54" height="16" rx="8" fill="var(--l)" opacity=".2" />
+            <circle cx="146" cy="96" r="4.6" fill="none" stroke="var(--l)" stroke-width="1.8" />
+            <path
+              d="M146 93.4v2.8l2 1.4"
+              fill="none"
+              stroke="var(--l)"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <rect x="156" y="94" width="22" height="4" rx="2" fill="var(--l)" opacity=".7" />
+            <circle cx="26" cy="117" r="7" fill="var(--c5)" />
+            <circle cx="26" cy="115" r="2.3" fill="#fff" opacity=".9" />
+            <path d="M21.5 121.5a4.5 4 0 0 1 9 0z" fill="#fff" opacity=".9" />
+            <rect x="40" y="112" width="50" height="5" rx="2.5" fill="var(--text)" opacity=".7" />
+            <rect x="40" y="121" width="32" height="4" rx="2" fill="var(--muted)" opacity=".45" />
+            <rect x="132" y="109" width="54" height="16" rx="8" fill="var(--a)" opacity=".2" />
+            <path
+              d="M143 113.5l6 7M149 113.5l-6 7"
+              fill="none"
+              stroke="var(--a)"
+              stroke-width="1.9"
+              stroke-linecap="round"
+            />
+            <rect x="156" y="115" width="22" height="4" rx="2" fill="var(--a)" opacity=".7" />
+            <g transform="rotate(5 242 78)">
+              <rect x="200" y="32" width="84" height="92" rx="14" fill="var(--surface)" stroke="var(--line)" />
+              <rect x="200" y="32" width="84" height="26" rx="14" fill="url(#heroG)" />
+              <rect x="200" y="46" width="84" height="12" fill="url(#heroG)" />
+              <rect x="216" y="25" width="5" height="14" rx="2.5" fill="var(--text)" opacity=".55" />
+              <rect x="263" y="25" width="5" height="14" rx="2.5" fill="var(--text)" opacity=".55" />
+              <rect x="222" y="41" width="40" height="5" rx="2.5" fill="#fff" opacity=".65" />
+              <circle cx="215" cy="72" r="4.5" fill="var(--p)" />
+              <circle cx="242" cy="72" r="4.5" fill="var(--p)" />
+              <circle cx="269" cy="72" r="4.5" fill="var(--w)" />
+              <circle cx="215" cy="89" r="4.5" fill="var(--p)" />
+              <circle cx="242" cy="89" r="4.5" fill="var(--l)" />
+              <circle cx="269" cy="89" r="4.5" fill="var(--p)" />
+              <circle cx="215" cy="106" r="4.5" fill="var(--p)" />
+              <circle cx="242" cy="106" r="4.5" fill="var(--p)" />
+              <circle cx="269" cy="106" r="8" fill="var(--p)" />
+              <path
+                d="M264.6 106l3.2 3.2 5.4-6"
+                fill="none"
+                stroke="#fff"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </g>
+          </svg>
+        </div>
+      </section>
+      <div id="vDash">
+        <header>
+          <div>
+            <h1>Dashboard</h1>
+            <div class="sub">Attendance overview and monthly register</div>
+          </div>
+          <div class="bar">
+            <input
+              class="srch"
+              id="qd"
+              type="search"
+              placeholder="Search name or module"
+              title="Press / to search"
+              aria-label="Search members or modules"
+            /><select id="dFilter" aria-label="Filter by module"></select
+            ><select id="rFilter" aria-label="Filter by role"></select
+            ><button class="btn" id="dClear" type="button" title="Clear search, module and role filters" hidden>
+              ✕ Clear
+            </button>
+            <div class="month">
+              <button id="prev" aria-label="Previous month">‹</button
+              ><button
+                type="button"
+                class="mlab"
+                id="mlabel"
+                aria-haspopup="dialog"
+                aria-expanded="false"
+                title="Pick a month"
+              ></button
+              ><button id="next" aria-label="Next month">›</button>
+            </div>
+            <input type="date" id="dJump" title="Jump to a date" aria-label="Jump to a date" /><button
+              class="btn"
+              id="todayBtn"
+            >
+              Today</button
+            ><button class="btn edit-only" id="addBtn2">+ Add member</button
+            ><button class="btn edit-only" id="modBtn2">+ Modules</button
+            ><button class="btn edit-only" id="roleBtn2">+ Roles</button
+            ><button class="btn edit-only" id="mapBtn2">Map members</button
+            ><button class="btn admin-only" id="setBtn2">⚙ Settings</button>
+            <button class="btn" id="xlsBtn2">Export Excel</button
+            ><button class="btn pri" id="csvBtn">Export CSV</button>
+          </div>
+        </header>
+
+        <nav class="snav" aria-label="Sections">
+          <button data-t="kpis">Overview</button><button data-t="insCard">Trends &amp; members</button
+          ><button data-t="secYear">Yearly</button><button data-t="secCal">Calendar</button
+          ><button data-t="secReg">Register</button><span class="sp"></span
+          ><button class="ca" data-ca>Collapse all</button>
+        </nav>
+        <section class="kpis" id="kpis"></section>
+
+        <section class="card sec-1" id="insCard" style="margin-bottom: 18px">
+          <div class="head">
+            <div>
+              <div class="ttl">
+                <h2 id="insT">Monthly trend</h2>
+                <span class="info"
+                  ><button type="button" class="ib" id="insI" aria-label="About this chart" aria-expanded="false">
+                    i
+                  </button>
+                  <div class="tip" id="insTip" role="tooltip"></div
+                ></span>
+              </div>
+              <div class="sub" id="mSub"></div>
+              <div class="sub" id="rankSub" hidden></div>
+            </div>
+            <div class="seg" id="insTab">
+              <button data-v="trend" class="on">Monthly trend</button><button data-v="members">Member summary</button>
+            </div>
+          </div>
+          <div id="paneTrend">
+            <div class="filters" style="margin-bottom: 12px">
+              <select id="mfMod" aria-label="Module"></select
+              ><select id="mfMem" aria-label="Member"></select
+              ><select id="mfMet" aria-label="Metric"></select>
+            </div>
+            <div id="mChart"></div>
+            <div class="legend" id="mLeg" style="margin-top: 8px"></div>
+          </div>
+          <div id="paneMem" hidden>
+            <div class="filters" style="margin-bottom: 12px">
+              <select id="memSort" aria-label="Sort members"></select>
+            </div>
+            <div class="scroll"><table class="rank" id="rank"></table></div>
+          </div>
+        </section>
+
+        <section class="card sec-2 yearc" id="secYear" style="margin-bottom: 18px">
+          <div class="head">
+            <div>
+              <div class="ttl">
+                <h2>Yearly overview</h2>
+                <span class="info"
+                  ><button type="button" class="ib" aria-label="About yearly overview" aria-expanded="false">i</button>
+                  <div class="tip" role="tooltip">
+                    <b>About the yearly overview</b>One bar per month of the chosen year, so you can spot seasonal dips
+                    at a glance.
+                    <ul>
+                      <li>
+                        <strong>Attendance %</strong> = statuses that count as attended ÷ all marked statuses (set in
+                        Settings).
+                      </li>
+                      <li>
+                        Use <em>Year</em>, <em>Module</em>, <em>Member</em> and <em>Metric</em> to narrow the chart.
+                        These filters only affect this chart.
+                      </li>
+                      <li>
+                        <strong>Click a month</strong> to switch the whole dashboard to it. Hover a bar for exact
+                        values.
+                      </li>
+                    </ul>
+                  </div></span
+                >
+              </div>
+              <div class="sub" id="ySub"></div>
+            </div>
+            <div class="filters">
+              <select id="yfYear" aria-label="Year"></select
+              ><select id="yfMod" aria-label="Module"></select
+              ><select id="yfMem" aria-label="Member"></select
+              ><select id="yfMet" aria-label="Metric"></select>
+            </div>
+          </div>
+          <div id="yChart"></div>
+          <div class="legend" id="yLeg" style="margin-top: 8px"></div>
+          <p class="hint">Click a month to switch the dashboard to it. Chart filters apply to that chart only.</p>
+        </section>
+
+        <section class="card sec-3" id="secCal" style="margin-bottom: 18px">
+          <div class="head">
+            <div>
+              <div class="ttl">
+                <h2>Calendar view</h2>
+                <span class="info"
+                  ><button type="button" class="ib" aria-label="About calendar view" aria-expanded="false">i</button>
+                  <div class="tip" role="tooltip">
+                    <b>About the calendar</b>A month at a glance: each day shows how many people attended out of the
+                    team size.
+                    <ul>
+                      <li>
+                        The number is <strong>members counted as attended / members</strong> for that day, using the
+                        module and role filters at the top.
+                      </li>
+                      <li>Colour shows the day’s rate (see the legend). Days with no entries stay plain.</li>
+                      <li>
+                        <strong>Click a date</strong> to open it in Mark attendance. Non-working days and holidays are
+                        not tracked.
+                      </li>
+                    </ul>
+                  </div></span
+                >
+              </div>
+              <div class="sub">Attended count per day · click a date to open it in Mark attendance</div>
+            </div>
+            <div class="legend" id="calLeg"></div>
+          </div>
+          <div id="dCal"></div>
+        </section>
+
+        <section class="card sec-4" id="secReg" style="margin-bottom: 18px">
+          <div class="head">
+            <div>
+              <div class="ttl">
+                <h2>Attendance register</h2>
+                <span class="info"
+                  ><button type="button" class="ib" aria-label="About attendance register" aria-expanded="false">
+                    i
+                  </button>
+                  <div class="tip" role="tooltip">
+                    <b>About the register</b>The full month for every member, grouped by module. It is read-only: change
+                    entries on the Mark attendance page.
+                    <ul>
+                      <li>Each cell shows a status code (see the legend). A dot means not marked.</li>
+                      <li>
+                        Use <em>Sort</em> and <em>Filter</em> to rank or narrow the list, or click the <em>Member</em>,
+                        status and <em>Rate</em> headings. Click a module heading to expand or collapse it.
+                      </li>
+                      <li>Hover a date to see who took the scrum if someone else was assigned.</li>
+                    </ul>
+                  </div></span
+                >
+              </div>
+              <div class="sub">Read-only record · update it from the Mark attendance page</div>
+            </div>
+            <div class="filters">
+              <select id="rgM" aria-label="Month"></select
+              ><select id="rgY" aria-label="Year"></select
+              ><select id="rgSort" aria-label="Sort members"></select
+              ><select id="rgFilt" aria-label="Filter members"></select
+              ><select id="rgMod" aria-label="Sort modules">
+                <option value="list">Modules: As listed</option>
+                <option value="az">Modules: A–Z</option>
+                <option value="za">Modules: Z–A</option>
+                <option value="none">Modules: No grouping</option></select
+              ><button class="btn" id="rgAll" type="button">Expand all</button>
+            </div>
+            <div class="legend" id="regLeg"></div>
+          </div>
+          <div class="scroll"><table id="reg"></table></div>
+          <p class="hint">
+            Click a module header to expand or collapse it. Non-working days and holidays are skipped. Statuses, working
+            days and holidays are set in Settings.
+          </p>
+        </section>
+      </div>
+
+      <div id="vMark" hidden>
+        <header>
+          <div>
+            <h1>Mark attendance</h1>
+            <div class="sub">Record the daily standup. Changes save automatically.</div>
+          </div>
+          <div class="bar">
+            <input
+              class="srch"
+              id="qm"
+              type="search"
+              placeholder="Search name or module"
+              title="Press / to search"
+              aria-label="Search members or modules"
+            />
+            <div id="mFilter" aria-label="Filter by module"></div>
+            <button class="btn" id="mClear" type="button" title="Clear search and module filter" hidden>✕ Clear</button>
+            <button class="btn edit-only" id="modBtn">+ Modules</button
+            ><button class="btn edit-only" id="roleBtn">+ Roles</button
+            ><button class="btn edit-only" id="mapBtn">Map members</button
+            ><button class="btn admin-only" id="setBtn">⚙ Settings</button>
+            <button class="btn edit-only" id="addBtn">+ Add member</button
+            ><button class="btn" id="xlsBtn">Export Excel</button>
+            <button class="btn pri edit-only" id="allP"></button>
+          </div>
+        </header>
+        <nav class="snav" aria-label="Sections">
+          <button data-t="mKpis">Overview</button><button data-t="secDate">Date</button
+          ><button data-t="mList">Members</button><button data-t="secSub">Submit</button
+          ><button data-t="secSum">Summary</button><span class="sp"></span
+          ><button class="ca" data-ca>Collapse all</button>
+        </nav>
+        <section class="kpis" id="mKpis"></section>
+        <div class="card dsec sec-5" id="secDate">
+          <div>
+            <small>Selected date</small>
+            <div class="bigd" id="bigD"></div>
+            <div class="sub" id="dayInfo" style="margin-bottom: 12px"></div>
+            <label class="fld" style="margin-bottom: 14px; max-width: 290px"
+              ><span>Scrum taken by</span
+              ><select id="leadSel" aria-label="Scrum taken by"></select
+              ><span class="hint" style="margin: 0; text-transform: none; letter-spacing: 0; font-weight: 400"
+                >If the usual lead is absent, assign a team member.</span
+              ></label
+            >
+            <div class="bar">
+              <button class="btn" id="dPrev">‹ Prev day</button><button class="btn" id="mToday">Today</button
+              ><button class="btn" id="dNext">Next day ›</button>
+            </div>
+          </div>
+          <div id="mCal"></div>
+        </div>
+        <div class="card sec-1" id="mList"></div>
+        <div class="card sec-2 subbar" id="secSub" style="margin-top: 14px">
+          <div style="flex: 1; min-width: 220px">
+            <h2 id="subT" style="margin: 0"></h2>
+            <div class="sub" id="subM"></div>
+            <div class="prog" style="margin-top: 10px"><i id="subP" style="width: 0"></i></div>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap">
+            <button class="btn edit-only" id="clrAll" type="button">Clear all</button
+            ><button class="btn pri edit-only" id="subBtn">Submit attendance</button>
+          </div>
+        </div>
+        <div class="card sec-5" id="secSum" style="margin-top: 14px">
+          <div class="head">
+            <div>
+              <h2>Attendance sections</h2>
+              <div class="sub">Who is where on the selected date</div>
+            </div>
+          </div>
+          <div class="secgrid" id="mSecs"></div>
+        </div>
+        <p class="hint">Tap a status again to clear it. Charts and the monthly register update on the dashboard.</p>
+        <p><button class="btn pri" id="toDash">View dashboard →</button></p>
+      </div>
+    </div>
+    <footer class="ft">
+      <div class="ft-main">
+        <div class="ft-brand">
+          <div class="brand">
+            <img id="fLogo" class="logo" alt="" hidden style="height: 40px" />
+            <div><b id="ftName"></b><span id="ftTag"></span></div>
+          </div>
+          <p>Log each team member’s standup status in seconds, then follow attendance by module, role and month.</p>
+        </div>
+        <div class="ft-col">
+          <h4>Navigate</h4>
+          <a href="#dashboard" id="fDash">Dashboard</a><a href="#mark" id="fMark">Mark attendance</a
+          ><a href="#help" id="fHelp">Help &amp; user guide</a><a href="#top" id="fTop">Back to top ↑</a>
+        </div>
+        <div class="ft-col">
+          <h4>Status key</h4>
+          <div class="ft-key" id="ftKey"></div>
+        </div>
+      </div>
+      <div class="ft-bar">
+        <div class="ft-in">
+          <span>© <span id="yr"></span> <span id="ftCopy"></span>. All rights reserved.</span
+          ><span>Built for daily standups</span>
+        </div>
+      </div>
+    </footer>
+
+    <dialog id="helpdlg" aria-labelledby="helpT">
+      <div class="hh">
+        <h2 id="helpT">Help &amp; user guide</h2>
+        <button class="btn" id="helpClose" type="button">Close</button>
+      </div>
+      <p class="sub" style="margin-top: 0">How to log the daily scrum, read the dashboard and export your data.</p>
+      <div class="toc" id="helpToc">
+        <button data-t="h1">Getting started</button><button data-t="h2">Status key</button
+        ><button data-t="h3">Dashboard</button><button data-t="h4">Mark attendance</button
+        ><button data-t="h5">Members, modules &amp; roles</button><button data-t="h6">Export</button
+        ><button data-t="h9">Settings</button><button data-t="h7">Tips &amp; shortcuts</button
+        ><button data-t="h8">Your data</button>
+      </div>
+      <section id="h1">
+        <h3>Getting started</h3>
+        <ol>
+          <li>Open <strong>Mark attendance</strong> and pick the date (today is selected by default).</li>
+          <li>
+            Tap a status for every member of your module (the statuses are listed under <strong>Status key</strong>).
+          </li>
+          <li>
+            Press <strong>Submit</strong> on your module heading. The module is locked until you press
+            <strong>Edit</strong>.
+          </li>
+          <li>Open the <strong>Dashboard</strong> to see trends, the calendar and the monthly register.</li>
+        </ol>
+      </section>
+      <section id="h2">
+        <h3>Status key</h3>
+        <div class="stl" id="helpStatus"></div>
+        <p id="helpRate"></p>
+        <p id="helpDays"></p>
+      </section>
+      <section id="h3">
+        <h3>Dashboard</h3>
+        <ul>
+          <li>
+            <strong>Toolbar:</strong> search by name or module, filter by module and role, change month, jump to a date,
+            add members, manage modules and roles, and export.
+          </li>
+          <li>
+            <strong>Overview cards:</strong> team size, who attended on the selected day, working days logged and
+            average attendance for the month.
+          </li>
+          <li>
+            <strong>Monthly trend / Member summary:</strong> daily chart for the month, or one row per member with
+            counts and an attendance bar. Use the <em>i</em> button on any section for a short explanation.
+          </li>
+          <li><strong>Yearly overview:</strong> one bar per month. Click a month to switch the dashboard to it.</li>
+          <li>
+            <strong>Calendar view:</strong> attendance per day, colour-coded. Click a date to open it in Mark
+            attendance.
+          </li>
+          <li>
+            <strong>Attendance register:</strong> read-only monthly grid grouped by module. Sort, filter, or click the
+            column headings. Click a module heading to expand or collapse it.
+          </li>
+          <li>Use <strong>Collapse all</strong> to fold sections away, and the section bar to jump between them.</li>
+        </ul>
+      </section>
+      <section id="h4">
+        <h3>Mark attendance</h3>
+        <ul>
+          <li>
+            <strong>Selected date:</strong> use Prev day, Next day, Today or the calendar. Non-working days and holidays
+            are not tracked.
+          </li>
+          <li>
+            <strong>Scrum taken by:</strong> defaults to the lead named in Settings. If they are absent, assign a team
+            member for that date.
+          </li>
+          <li>
+            <strong>Marking:</strong> tap a status to set it and tap it again to clear it. The <em>Mark all</em> button
+            fills everyone who is not locked with the default status from Settings.
+          </li>
+          <li>
+            <strong>Submit per module:</strong> every module has its own Submit button, enabled once all its members are
+            marked. <em>Edit</em> unlocks it again.
+          </li>
+          <li>
+            <strong>Submit all modules</strong> (in the summary card) submits every pending module at once, and
+            <em>Unlock all</em> reverses it.
+          </li>
+          <li>
+            A member who belongs to several modules has one record per day, so they are locked as soon as any of their
+            modules is submitted.
+          </li>
+        </ul>
+      </section>
+      <section id="h5">
+        <h3>Members, modules and roles</h3>
+        <ul>
+          <li>
+            <strong>+ Add member</strong> is available on both pages. Give a name, one role and one or more modules.
+          </li>
+          <li>
+            <strong>+ Modules</strong> and <strong>+ Roles</strong> add or remove modules and roles. Removing one never
+            deletes attendance records.
+          </li>
+          <li>
+            <strong>Map members</strong> sets roles and modules for many people at once. Tick members, then use the bulk
+            bar.
+          </li>
+          <li>On Mark attendance, the ✕ beside a member removes them and all their records, after a confirmation.</li>
+        </ul>
+      </section>
+      <section id="h6">
+        <h3>Export</h3>
+        <ul>
+          <li>
+            <strong>Export Excel</strong> gives a Summary sheet, one sheet per module, and an All Data sheet with filter
+            arrows. Choose <em>Month</em>, <em>Single day</em> or <em>All data</em>, and which modules to include.
+          </li>
+          <li>
+            The <em>All data</em> option puts everything for a module on its own sheet: totals, every day, and a
+            month-wise summary.
+          </li>
+          <li>
+            <strong>Export CSV</strong> saves the register you are looking at, so the current search, filter and sort
+            apply.
+          </li>
+        </ul>
+      </section>
+      <section id="h9">
+        <h3>Settings</h3>
+        <ul>
+          <li>
+            <strong>⚙ Settings</strong> holds everything the tracker uses: app and organization name, logo, the default
+            scrum lead, statuses (code, label, colour, whether it counts as attended), the default status, working days
+            and holidays.
+          </li>
+          <li>
+            Settings are stored in the shared database. When anyone saves them, every open page updates straight away.
+          </li>
+          <li>
+            Removing a status never deletes attendance: marks with that code are hidden until a status with the same
+            code is added back.
+          </li>
+        </ul>
+      </section>
+      <section id="h7">
+        <h3>Tips &amp; shortcuts</h3>
+        <ul>
+          <li>
+            <span class="kk">/</span> focus the search box &nbsp; <span class="kk">T</span> switch light or dark theme
+            &nbsp; <span class="kk">←</span> <span class="kk">→</span> previous or next month on the dashboard &nbsp;
+            <span class="kk">Esc</span> close a popup.
+          </li>
+          <li>The page behind a popup stays still while it is open.</li>
+        </ul>
+      </section>
+      <section id="h8">
+        <h3>Your data</h3>
+        <ul>
+          <li>
+            Everything is saved automatically to the shared MongoDB database. Everyone using the tracker sees the same
+            records, and changes appear for everyone within moments.
+          </li>
+          <li>
+            The status at the top shows whether your latest change has been saved. Export to Excel any time you want an
+            offline copy.
+          </li>
+        </ul>
+      </section>
+      <div class="row"><button class="btn" id="helpClose2" type="button">Close</button></div>
+    </dialog>
+    <dialog id="accdlg" class="accdlg" aria-labelledby="accT">
+      <div class="acchead">
+        <div>
+          <h2 id="accT" style="margin: 0; font-size: 17px">Manage access</h2>
+          <p class="sub" style="margin: 4px 0 0">
+            <span id="accCount"></span> · Admin: everything · Program Manager: attendance, members, modules, roles ·
+            Viewer: read-only
+          </p>
+        </div>
+        <button class="btn pri" id="accAdd" type="button">+ Add user</button>
+      </div>
+      <div id="accList"></div>
+      <p class="hint" id="accMsg" role="alert"></p>
+      <div class="row"><button class="btn" id="accClose" type="button">Done</button></div>
+    </dialog>
+    <dialog id="usrdlg" aria-labelledby="usrT">
+      <h2 id="usrT" style="margin: 0; font-size: 16px">Add user</h2>
+      <label for="usrName">Username</label>
+      <input id="usrName" maxlength="32" autocomplete="off" placeholder="3-32 letters, digits, . _ -" />
+      <label for="usrRole">Role</label>
+      <select id="usrRole" style="width: 100%"></select>
+      <label for="usrEmail">Email</label>
+      <input id="usrEmail" type="email" maxlength="254" autocomplete="off" placeholder="name@company.com" />
+      <label for="usrPass" id="usrPassLabel">Temporary password</label>
+      <input id="usrPass" type="password" maxlength="200" autocomplete="new-password" />
+      <p class="hint">The user must choose their own password the first time they sign in.</p>
+      <p class="hint err" id="usrErr" role="alert"></p>
+      <div class="row">
+        <button class="btn" id="usrCancel" type="button">Cancel</button
+        ><button class="btn pri" id="usrSave" type="button">Add user</button>
+      </div>
+    </dialog>
+    <dialog id="pwdlg" aria-labelledby="pwT">
+      <h2 id="pwT" style="margin: 0; font-size: 16px">Change password</h2>
+      <label for="pwCur">Current password</label>
+      <input id="pwCur" type="password" maxlength="200" autocomplete="current-password" />
+      <label for="pwNew">New password</label>
+      <input id="pwNew" type="password" maxlength="200" autocomplete="new-password" />
+      <label for="pwRep">Repeat new password</label>
+      <input id="pwRep" type="password" maxlength="200" autocomplete="new-password" />
+      <p class="hint err" id="pwErr" role="alert"></p>
+      <div class="row">
+        <button class="btn" id="pwCancel" type="button">Cancel</button
+        ><button class="btn pri" id="pwSave" type="button">Change password</button>
+      </div>
+    </dialog>
+    <dialog id="setdlg" class="setdlg" aria-labelledby="setT">
+      <h2 id="setT" style="margin: 0; font-size: 17px">Settings</h2>
+      <p class="sub" style="margin: 4px 0 0">Stored in the shared database. Saving updates every open page.</p>
+      <div class="setsec">
+        <b>General</b>
+        <div class="setgrid">
+          <label class="fld"><span>App name</span><input id="set_appName" maxlength="60" /></label>
+          <label class="fld"><span>Tagline</span><input id="set_tagline" maxlength="80" /></label>
+          <label class="fld"><span>Organization</span><input id="set_orgName" maxlength="60" /></label>
+          <label class="fld"><span>Logo (URL or path)</span><input id="set_logo" maxlength="300" /></label>
+          <label class="fld"><span>Default scrum lead</span><input id="set_leadLabel" maxlength="40" /></label>
+          <label class="fld"
+            ><span>Locale (blank = browser)</span><input id="set_locale" maxlength="20" placeholder="e.g. en-IN"
+          /></label>
+        </div>
+      </div>
+      <div class="setsec">
+        <b>Statuses</b
+        ><span class="sub"
+          >Code shown in the register, label on the buttons, colour, whether it counts as attended, and the default used
+          by “Mark all”.</span
+        >
+        <div id="setSt"></div>
+        <button type="button" class="btn" id="setStAdd">+ Add status</button>
+      </div>
+      <div class="setsec">
+        <b>Working days</b>
+        <div id="setDays" class="setdays"></div>
+      </div>
+      <div class="setsec">
+        <b>Holidays</b><span class="sub">Not tracked, like non-working days.</span>
+        <div id="setHol"></div>
+        <button type="button" class="btn" id="setHolAdd">+ Add holiday</button>
+      </div>
+      <p class="hint" id="setMsg" role="alert" style="color: var(--a)"></p>
+      <div class="row">
+        <button class="btn" id="setCancel" type="button">Cancel</button
+        ><button class="btn pri" id="setSave" type="button">Save settings</button>
+      </div>
+    </dialog>
+    <dialog id="mdlg">
+      <h2 style="margin: 0; font-size: 16px">Manage modules</h2>
+      <div id="mdList" style="margin-top: 8px"></div>
+      <label for="mdn">New module</label>
+      <input id="mdn" placeholder="Module name" style="width: 100%" />
+      <div class="row">
+        <button class="btn" id="mdClose">Done</button><button class="btn pri" id="mdAdd">Add</button>
+      </div>
+    </dialog>
+    <dialog id="mapdlg">
+      <h2 style="margin: 0; font-size: 16px">Map members to modules</h2>
+      <p class="sub" style="margin: 4px 0 12px">Give each member one role and tick every module they work in.</p>
+      <input id="mapQ" type="search" placeholder="Search members" autocomplete="off" />
+      <div class="mapbar" id="mapBulk" hidden>
+        <b id="mapCnt"></b><span class="sp"></span
+        ><select id="mapRole" aria-label="Role"></select
+        ><button class="btn" id="mapSetRole">Set role</button>
+        <div id="mapTo"></div>
+        <button class="btn pri" id="mapApply">Add to modules</button><button class="btn" id="mapRemove">Remove</button>
+      </div>
+      <div class="mhead">
+        <input type="checkbox" id="mapAll" aria-label="Select all" /><span>Member</span><span>Role</span
+        ><span>Modules</span><span class="mpact-h">Actions</span>
+      </div>
+      <div id="mapList" class="maplist"></div>
+      <div class="row" style="justify-content: space-between; align-items: center">
+        <span class="sub" id="mapFoot"></span><button class="btn" id="mapClose">Done</button>
+      </div>
+    </dialog>
+    <dialog id="rdlg">
+      <h2 style="margin: 0; font-size: 16px">Manage roles</h2>
+      <div id="rdList" style="margin-top: 8px"></div>
+      <label for="rdn">New role</label>
+      <input id="rdn" placeholder="Role name" style="width: 100%" />
+      <div class="row">
+        <button class="btn" id="rdClose">Done</button><button class="btn pri" id="rdAdd">Add</button>
+      </div>
+    </dialog>
+    <dialog id="cdlg">
+      <h2 id="cT" style="margin: 0; font-size: 16px"></h2>
+      <p id="cM" style="margin: 10px 0 0; color: var(--muted)"></p>
+      <div class="row">
+        <button class="btn" id="cNo">Cancel</button
+        ><button class="btn pri" id="cYes" style="background: var(--a); border-color: var(--a)">Remove</button>
+      </div>
+    </dialog>
+    <dialog id="dlg">
+      <h2 id="dlgT" style="margin: 0; font-size: 16px">Add team member</h2>
+      <label for="nm">Name</label><input id="nm" placeholder="Full name" />
+      <label for="rl">Role <span class="sub">(one)</span></label
+      ><select id="rl" style="width: 100%"></select>
+      <label>Modules <span class="sub">(select one or more)</span></label>
+      <div id="nmods" class="mchips"></div>
+      <div class="row">
+        <button class="btn" id="cancel">Cancel</button><button class="btn pri" id="save">Add</button>
+      </div>
+    </dialog>
+
+    <dialog id="xdlg">
+      <h2 style="margin: 0; font-size: 16px">Export to Excel</h2>
+      <p class="sub" style="margin: 4px 0 0">
+        A Summary sheet, one sheet per module, and an All Data sheet with filters.
+      </p>
+      <label>Period</label>
+      <div class="seg" id="xSeg">
+        <button type="button" data-v="m" class="on">Month</button><button type="button" data-v="d">Single day</button
+        ><button type="button" data-v="a">All data</button>
+      </div>
+      <div class="xrow" id="xMonthRow">
+        <select id="xM" aria-label="Month"></select
+        ><select id="xY" aria-label="Year"></select>
+      </div>
+      <div class="xrow" id="xDayRow" hidden><input type="date" id="xD" aria-label="Date" /></div>
+      <p class="hint" style="margin: 8px 0 0">
+        Monthly sheets list working days only. A single-day export lists every member’s status for that date. All data
+        covers every recorded date, month by month.
+      </p>
+      <label>Modules</label>
+      <div id="xMods"></div>
+      <div class="row">
+        <button class="btn" id="xCancel">Cancel</button><button class="btn pri" id="xGo">Download .xlsx</button>
+      </div>
+    </dialog>
+    <div id="mpop" role="dialog" aria-label="Pick a month" hidden>
+      <div class="mphd">
+        <button type="button" class="mpy" id="mpPrev" aria-label="Previous year">‹</button><b id="mpYear"></b
+        ><button type="button" class="mpy" id="mpNext" aria-label="Next year">›</button>
+      </div>
+      <div class="mpg" id="mpGrid"></div>
+      <div class="mpft"><button type="button" class="btn" id="mpNow">This month</button></div>
+    </div>
+    <div id="toast" role="status" aria-live="polite"></div>
+
+    <script src="js/core/utils.js"></script>
+    <script src="js/core/settings.js"></script>
+    <script src="js/core/state.js"></script>
+    <script src="js/data/sync.js"></script>
+    <script src="js/data/api.js"></script>
+    <script src="js/auth/session.js"></script>
+    <script src="js/app/boot.js"></script>
+    <script src="js/features/modules.js"></script>
+    <script src="js/features/roles.js"></script>
+    <script src="js/features/members.js"></script>
+    <script src="js/features/settings.js"></script>
+    <script src="js/features/access.js"></script>
+    <script src="js/views/dashboard.js"></script>
+    <script src="js/views/charts.js"></script>
+    <script src="js/views/mark.js"></script>
+    <script src="js/export/csv.js"></script>
+    <script src="js/export/excel.js"></script>
+    <script src="js/ui/multiselect.js"></script>
+    <script src="js/ui/router.js"></script>
+    <script src="js/ui/theme.js"></script>
+    <script src="js/ui/shortcuts.js"></script>
+    <script src="js/ui/layout.js"></script>
+    <script src="js/ui/month-picker.js"></script>
+    <script src="js/ui/info-tips.js"></script>
+    <script src="js/ui/popups.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>

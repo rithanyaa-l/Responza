@@ -1,0 +1,15 @@
+# dependencies
+node_modules/
+
+# local configuration
+.env
+
+# logs (the database lives outside the project, see README)
+*.log
+
+# editor and OS files
+.claude/
+.vscode/
+.idea/
+Thumbs.db
+.DS_Store

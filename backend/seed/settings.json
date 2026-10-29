@@ -1,0 +1,18 @@
+{
+  "appName": "Scrum Attendance",
+  "tagline": "Daily standup tracker",
+  "orgName": "PSG",
+  "logo": "assets/logo.png",
+  "leadLabel": "Program Manager",
+  "locale": "",
+  "statuses": [
+    { "code": "P", "label": "Present", "color": "#16a34a", "attended": true },
+    { "code": "W", "label": "WFH", "color": "#7c3aed", "attended": true },
+    { "code": "L", "label": "Late", "color": "#d97706", "attended": true },
+    { "code": "A", "label": "Absent", "color": "#dc2626", "attended": false }
+  ],
+  "defaultStatus": "P",
+  "workDays": [1, 2, 3, 4, 5],
+  "holidays": [],
+  "thresholds": { "good": 80, "warn": 50, "low": 80 }
+}

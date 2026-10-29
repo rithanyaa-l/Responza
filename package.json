@@ -1,0 +1,12 @@
+{
+  "name": "scrum-attendance-tracker",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Daily standup attendance tracker: static frontend + Node.js/MongoDB backend",
+  "scripts": {
+    "start": "powershell -ExecutionPolicy Bypass -File scripts/start.ps1",
+    "stop": "powershell -ExecutionPolicy Bypass -File scripts/stop.ps1",
+    "format": "npx --yes prettier@3.3.3 --write \"frontend/**/*.{js,css,html}\" \"backend/src/**/*.js\" \"backend/seed/*.json\"",
+    "format:check": "npx --yes prettier@3.3.3 --check \"frontend/**/*.{js,css,html}\" \"backend/src/**/*.js\" \"backend/seed/*.json\""
+  }
+}
